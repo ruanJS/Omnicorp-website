@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-omega-bg: var(--omega-bg);
+  --color-omega-bg-secondary: var(--omega-bg-secondary);
+  --color-omega-card: var(--omega-card);
+  --color-omega-gold: var(--omega-gold);
+  --color-omega-gold-hover: var(--omega-gold-hover);
+  --color-omega-gold-highlight: var(--omega-gold-highlight);
+  --color-omega-gold-soft: var(--omega-gold-soft);
+  --color-omega-text: var(--omega-text);
+  --color-omega-text-secondary: var(--omega-text-secondary);
+  --color-omega-border: var(--omega-border);
+}
+
+:root {
+  --omega-bg: #0B0B0B;
+  --omega-bg-secondary: #111111;
+  --omega-card: #1A1A1A;
+  --omega-gold: #FFC300;
+  --omega-gold-hover: #E6AC00;
+  --omega-gold-highlight: #FFD95A;
+  --omega-gold-soft: #FFE27A;
+  --omega-text: #F5F5F5;
+  --omega-text-secondary: #A0A0A0;
+  --omega-border: #2B2B2B;
+}
+
+.light-mode {
+  --omega-bg: #F4F4F1; /* Soft cream/off-white studio variant */
+  --omega-bg-secondary: #EBEBE6; /* Slightly deeper tone */
+  --omega-card: #FFFFFF;
+  --omega-gold: #C5A059; /* Sophisticated light studio bronze gold */
+  --omega-gold-hover: #A08043;
+  --omega-gold-highlight: #DBC59E;
+  --omega-gold-soft: #EDE3D0;
+  --omega-text: #171716; /* Luxurious low-contrast charcoal black */
+  --omega-text-secondary: #6B6B65;
+  --omega-border: #D1D1C8;
+}
+
+@layer base {
+  body {
+    @apply bg-omega-bg text-omega-text font-sans selection:bg-omega-gold selection:text-black overflow-x-hidden transition-colors duration-500;
+  }
+  
+  /* Grain Texture Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  .light-mode body::before {
+    opacity: 0.015; /* Even more subtle in light mode */
+  }
+}
+
+@layer utilities {
+  .custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease-out;
+  }
+  
+  .marquee-content {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+  
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  .gold-gradient {
+    background: linear-gradient(135deg, var(--omega-gold), var(--omega-gold-highlight));
+  }
+  .gold-luxury-gradient {
+    background: linear-gradient(135deg, var(--omega-gold-hover), var(--omega-gold), var(--omega-gold-soft));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .dark-gradient {
+    background: linear-gradient(180deg, var(--omega-bg), var(--omega-bg-secondary));
+  }
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.15);
+  }
+  .gold-text-glow {
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
